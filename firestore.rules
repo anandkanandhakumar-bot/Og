@@ -1,0 +1,90 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && request.auth.token.email == 'anandkanandhakumar@gmail.com';
+    }
+
+    match /posts/{postId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /tips/{tipId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /tournaments/{tournamentId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /editing_tutorials/{tutorialId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /faqs/{faqId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /spotlights/{spotlightId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+
+    match /registrations/{regId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if isAuthenticated() && (resource.data.userId == request.auth.uid || isAdmin());
+    }
+
+    match /comments/{commentId} {
+      allow read: if true;
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if isAuthenticated() && (resource.data.userId == request.auth.uid || isAdmin());
+    }
+
+    match /teams/{teamId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update, delete: if isAuthenticated() && (resource.data.captainUid == request.auth.uid || isAdmin());
+    }
+
+    match /chats/{chatId}/messages/{msgId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && request.resource.data.senderId == request.auth.uid;
+      allow delete: if isAuthenticated() && (resource.data.senderId == request.auth.uid || isAdmin());
+    }
+
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && request.auth.uid == userId;
+
+      match /bookmarks/{bookmarkId} {
+        allow read, write: if isAuthenticated() && request.auth.uid == userId;
+      }
+
+      match /progress/{progressId} {
+        allow read, write: if isAuthenticated() && request.auth.uid == userId;
+      }
+
+      match /achievements/{achievementId} {
+        allow read, write: if isAuthenticated() && request.auth.uid == userId;
+      }
+    }
+
+    match /feedback/{feedbackId} {
+      allow create: if isAuthenticated();
+      allow read, write: if isAdmin();
+    }
+  }
+}

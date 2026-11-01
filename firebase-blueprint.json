@@ -1,0 +1,72 @@
+{
+  "entities": {
+    "Post": {
+      "title": "string",
+      "content": "string",
+      "imageUrl": "string",
+      "author": "string",
+      "category": "string",
+      "createdAt": "timestamp",
+      "updatedAt": "timestamp"
+    },
+    "Tip": {
+      "title": "string",
+      "category": "string",
+      "content": "string",
+      "videoUrl": "string",
+      "difficulty": "string",
+      "createdAt": "timestamp"
+    },
+    "Tournament": {
+      "name": "string",
+      "game": "string",
+      "prizePool": "string",
+      "startDate": "string",
+      "rules": "string",
+      "status": "string",
+      "createdAt": "timestamp"
+    },
+    "Registration": {
+      "tournamentId": "string",
+      "userId": "string",
+      "teamName": "string",
+      "members": "string",
+      "status": "string",
+      "createdAt": "timestamp"
+    },
+    "EditingTutorial": {
+      "title": "string",
+      "software": "string",
+      "category": "string",
+      "stepsUrl": "string",
+      "videoUrl": "string",
+      "description": "string",
+      "createdAt": "timestamp"
+    },
+    "UserProfile": {
+      "uid": "string",
+      "displayName": "string",
+      "email": "string",
+      "photoUrl": "string",
+      "role": "string",
+      "updatedAt": "timestamp"
+    },
+    "ProSpotlight": {
+      "playerName": "string",
+      "realName": "string",
+      "teamName": "string",
+      "role": "string",
+      "game": "string",
+      "bio": "string",
+      "interviewTitle": "string",
+      "interviewSummary": "string",
+      "keyAdvice": "string",
+      "deviceAndSens": "string",
+      "achievements": "array",
+      "qaList": "array",
+      "avatarUrl": "string",
+      "rating": "number",
+      "createdAt": "timestamp"
+    }
+  }
+}

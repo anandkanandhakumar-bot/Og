@@ -1,0 +1,6 @@
+{
+  "name": "OG Warriors",
+  "description": "Esports community, tournaments, pro gaming tips, editing tutorials and Super Admin panel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
